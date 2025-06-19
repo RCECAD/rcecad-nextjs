@@ -1,10 +1,10 @@
 import { Card } from "@/components/card";
-import { Button, Input, InputFile } from "@/components/general";
+import { Button, Input, InputFile, Label } from "@/components/general";
 import { Save } from "lucide-react";
 
 export default function Page() {
 	return (
-		<div className="flex flex-col justify-center items-center min-h-screen w-full">
+		<div className="flex flex-col justify-center items-center min-h-screen w-full p-4">
 			<Card.Root>
 				<Card.Header>
 					<Card.Title>Dados Gerais</Card.Title>
@@ -12,30 +12,22 @@ export default function Page() {
 				<form className="space-y-4">
 					<Card.Content>
 						<div className="flex flex-col gap-1.5">
-							<label htmlFor="project-name" className="text-lg">
-								Nome do Projeto
-							</label>
+							<Label>Nome do Projeto</Label>								
 							<Input type="text" id="project-name" />
 						</div>
 
 						<div className="flex flex-col gap-2">
-							<label htmlFor="designer-name" className="text-lg">
-								Nome do Projetista
-							</label>
+							<Label>Nome do Projetista</Label>	
 							<Input id="designer-name" />
 						</div>
 
 						<div className="flex flex-col gap-2">
-							<label htmlFor="enterprise-name" className="text-lg">
-								Nome da Empresa
-							</label>
+							<Label>Nome da Empresa</Label>	
 							<Input id="enterprise-name" />
 						</div>
 
 						<div className="flex flex-col gap-2">
-							<label htmlFor="basin-name" className="text-lg">
-								Nome da Bacia
-							</label>
+							<Label>Nome da Bacia</Label>	
 							<Input id="basin-name" />
 						</div>
 
