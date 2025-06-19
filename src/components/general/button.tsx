@@ -13,7 +13,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
 };
 
 function Button({
-	className = "w-full",
+	className = "w-fit",
 	variant = "default",
 	size = "default",
 	asChild = false,
