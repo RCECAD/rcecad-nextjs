@@ -13,7 +13,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
 };
 
 function Button({
-	className = "",
+	className = "w-full",
 	variant = "default",
 	size = "default",
 	asChild = false,
@@ -22,7 +22,7 @@ function Button({
 	const Comp = asChild ? Slot : "button";
 
 	const base =
-		"inline-flex items-center justify-center w-full gap-2 p-2 whitespace-nowrap cursor-pointer rounded-md text-normal font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive";
+		"inline-flex items-center justify-center gap-2 p-2 whitespace-nowrap cursor-pointer rounded-md text-normal font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive";
 
 	const variantClasses = {
 		default: "bg-sky-600 text-slate-100 hover:bg-sky-600/90",
