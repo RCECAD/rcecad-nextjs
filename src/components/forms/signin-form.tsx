@@ -16,16 +16,6 @@ import { Button } from "../general/button";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-<<<<<<< HEAD
-import { redirect } from "next/navigation";
-import { Loader2 } from "lucide-react";
-import { SigninFormValues } from "@/schemas/signin-schema";
-
-export function SigninForm() {
-	const [loading, setLoading] = useState<boolean>(false);
-	const form = useForm<SigninFormValues>({
-		resolver: zodResolver(signupSchema),
-=======
 import { useRouter } from "next/navigation";
 
 import { type SigninFormValues, signinSchema } from "@/schemas/signin-schema";
@@ -38,18 +28,12 @@ export const SigninForm = () => {
 
 	const form = useForm<SigninFormValues>({
 		resolver: zodResolver(signinSchema),
->>>>>>> refs/remotes/origin/main
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 	});
 
-<<<<<<< HEAD
-	const userType = form.watch("userType");
-
-=======
->>>>>>> refs/remotes/origin/main
 	async function onSubmit(data: SigninFormValues) {
 		setLoading(true);
 		router.push("/projects");
