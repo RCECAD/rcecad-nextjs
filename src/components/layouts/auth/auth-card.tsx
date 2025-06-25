@@ -2,7 +2,6 @@ import type { JSX, ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { MainTopic } from "../../topics/main-topic";
 import { SignupTopic } from "../../topics/signup-topic";
-import { ForgotPasswordTopic } from "@/components/topics/forgot-password-topic";
 
 interface AuthCardProps {
 	children: ReactNode;
@@ -18,7 +17,7 @@ export const AuthCard: ComponentSetup = ({ children }) => {
 		) : pathname === "/auth/signup" ? (
 			<SignupTopic />
 		) : (
-			<ForgotPasswordTopic />
+			<MainTopic />
 		);
 	return (
 		<div className="flex w-full max-w-[90%] lg:max-w-full h-full gap-2 rounded-lg items-center justify-start border-2 drop-shadow-3xl bg-slate-200 border-slate-300 border-inside">

@@ -1,4 +1,5 @@
-import { Button } from "@/components/general";
+import { FulfillHydraulics } from "@/components/dialogs/fullfill-hydraulics";
+import { Button } from "@/components/general/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -11,7 +12,7 @@ import type { Project } from "@/domain/entities/project";
 import type { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 
-export const columns: Array<ColumnDef<Project>> = [
+export const projectColumns: Array<ColumnDef<Project>> = [
 	{
 		accessorKey: "name",
 		header: "Nome do projeto",
@@ -27,7 +28,7 @@ export const columns: Array<ColumnDef<Project>> = [
 	{
 		id: "actions",
 		cell: ({ row }) => {
-			const foo = row.original;
+			const project = row.original;
 
 			return (
 				<DropdownMenu>
@@ -39,12 +40,13 @@ export const columns: Array<ColumnDef<Project>> = [
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
 						<DropdownMenuLabel>Actions</DropdownMenuLabel>
-						<DropdownMenuItem
+						{/* <DropdownMenuItem
 							onClick={() => navigator.clipboard.writeText(foo.id)}
 						>
 							copiar alguma coisa se pa
-						</DropdownMenuItem>
+						</DropdownMenuItem> */}
 						<DropdownMenuSeparator />
+						{!project.hydraulic.id && <FulfillHydraulics />}
 						<DropdownMenuItem>Remover projeto</DropdownMenuItem>
 						<DropdownMenuItem>Visualizar detalhes</DropdownMenuItem>
 					</DropdownMenuContent>

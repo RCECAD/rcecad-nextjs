@@ -20,7 +20,7 @@ import { toast } from "sonner";
 import { redirect } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-export function SignupForm() {
+export const SignupForm = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const form = useForm<SignupFormValues>({
 		resolver: zodResolver(signupSchema),
@@ -58,7 +58,7 @@ export function SignupForm() {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="space-y-6 max-w-md mx-auto"
+				className="space-y-6 min-w-full mx-auto"
 			>
 				<FormField
 					control={form.control}
@@ -160,15 +160,19 @@ export function SignupForm() {
 							<FormControl>
 								<Input type="password" placeholder="********" {...field} />
 							</FormControl>
+							<p className="text-sm text-zinc-400">
+								A senha deve possuir pelo menos 8 caracteres, uma letra
+								maiúscula e um símbolo.
+							</p>
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
 
-				<Button type="submit" disabled={loading}>
-					{loading && <Loader2 className="animate-spin" />} Criar conta
+				<Button type="submit" disabled={loading} className="w-full">
+					{loading && <Loader2 className="animate-spin" />} Criar minha conta
 				</Button>
 			</form>
 		</Form>
 	);
-}
+};
