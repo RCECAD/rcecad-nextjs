@@ -19,10 +19,11 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { SigninFormValues } from "@/schemas/signin-schema";
 
 export function SigninForm() {
 	const [loading, setLoading] = useState<boolean>(false);
-	const form = useForm<SignupFormValues>({
+	const form = useForm<SigninFormValues>({
 		resolver: zodResolver(signupSchema),
 		defaultValues: {
 			userType: "person",
@@ -36,7 +37,7 @@ export function SigninForm() {
 
 	const userType = form.watch("userType");
 
-	async function onSubmit(data: SignupFormValues) {
+	async function onSubmit(data: SigninFormValues) {
 		setLoading(true);
 		const signIpPayload = { success: false, data }; // chamada api
 		if (!signIpPayload.success) {
