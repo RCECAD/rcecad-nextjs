@@ -1,4 +1,4 @@
-import { Button } from "@/components/general";
+import { Button } from "@/components/general/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
