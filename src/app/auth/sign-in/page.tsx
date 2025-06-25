@@ -1,5 +1,5 @@
+import { SigninForm } from "@/components/forms/signin-form";
 import { TextHeader } from "@/components/layouts/text-header";
-import { SigninForm } from "@/components/signin/signin-form";
 import { LogIn } from "lucide-react";
 
 export default function Page() {

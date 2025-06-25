@@ -1,4 +1,5 @@
 export type Hydraulic = {
+	id: string;
 	population: Population;
 	perCapita: PerCapita;
 	roadCoating: RoadCoating;

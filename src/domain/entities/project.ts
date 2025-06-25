@@ -1,4 +1,5 @@
 import type { Hydraulic } from "./hydraulic";
+import type { User } from "./user";
 
 export type Project = {
 	id: string;
@@ -8,7 +9,8 @@ export type Project = {
 	city: string;
 	state: string;
 	engineerName: string;
-	hydraulicData: Hydraulic;
+	user: Pick<User, "id">;
+	hydraulic: Partial<Pick<Hydraulic, "id">>;
 };
 
 // export type Calculations = {}
