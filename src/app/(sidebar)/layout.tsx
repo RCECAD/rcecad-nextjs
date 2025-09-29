@@ -1,18 +1,14 @@
-"use client";
-import { SidebarComponent } from "@/components/sidebar";
-import type { ReactNode } from "react";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
-interface Props {
-	children: ReactNode;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
+  );
 }
-
-const SidebarLayout = ({ children }: Readonly<Props>) => {
-	return (
-		<div className="flex">
-			<SidebarComponent.DesktopSidebar />
-			<SidebarComponent.MobileSidebar />
-			{children}
-		</div>
-	);
-};
-export default SidebarLayout;

@@ -1,57 +1,55 @@
-import { ProjectsPage } from "@/components/pages/projects/projects-page";
-import type { Project } from "@/domain/entities/project";
-// import { retrieveProjects } from "@/domain/features/retrieve-projects-feature";
-// import { cookies } from "next/headers";
-// import { redirect } from "next/navigation";
+import Link from "next/link";
+import { DataTable } from "@/components/data-table";
+import { columns, type ProjectRowUI } from "@/components/projects/columns";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default async function Page() {
-	// const token = (await cookies()).get("token")?.value;
-	// if (!token) {
-	// 	throw redirect("/auth/signin");
-	// }
+async function getProjects(): Promise<ProjectRowUI[]> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/projects`,
+    {
+      cache: "no-store",
+    },
+  );
+  const rows = (await res.json()) as any[];
 
-	// const projectsPayload = await retrieveProjects({
-	// 	user: {
-	// 		id: "foo",
-	// 		token,
-	// 	},
-	// });
+  return rows.map((r) => ({
+    id: r.id,
+    name: r.name,
+    businessName: r.businessName,
+    riverBasinName: r.riverBasinName,
+    city: r.city,
+    state: r.state,
+    engineerName: r.engineerName,
+    hydraulicId: r.hydraulicId ?? null,
+  }));
+}
 
-	// const projects = projectsPayload.data ?? [];
-	const projects: Array<Project> = [
-		{
-			id: "proj-1",
-			name: "Construção da Barragem Central",
-			businessName: "Hidro Engenharia S/A",
-			riverBasinName: "Bacia do Rio Amazonas",
-			city: "Manaus",
-			state: "AM",
-			engineerName: "Eng. José da Silva",
-			user: { id: "user-1" },
-			hydraulic: { id: "hydraulic-1" },
-		},
-		{
-			id: "proj-2",
-			name: "Reservatório Norte",
-			businessName: "Água Viva Construções",
-			riverBasinName: "Bacia do Rio Tocantins",
-			city: "Palmas",
-			state: "TO",
-			engineerName: "Eng. Maria Ferreira",
-			user: { id: "user-2" },
-			hydraulic: { id: undefined },
-		},
-		{
-			id: "proj-3",
-			name: "Canal de Irrigação Sul",
-			businessName: "AgroCanal Ltda.",
-			riverBasinName: "Bacia do Rio São Francisco",
-			city: "Juazeiro",
-			state: "BA",
-			engineerName: "Eng. Carlos Pereira",
-			user: { id: "user-3" },
-			hydraulic: { id: "hydraulic-3" },
-		},
-	];
-	return <ProjectsPage projects={projects} />;
+export default async function ProjectsPage() {
+  const data = await getProjects();
+
+  return (
+    <div className="p-6 space-y-4">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Projects</h1>
+        <Button asChild>
+          <Link href="/projects/new">Novo Projeto</Link>
+        </Button>
+      </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Lista</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            columns={columns}
+            data={data}
+            searchKey="name"
+            placeholder="Buscar por nome..."
+          />
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
